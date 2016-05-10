@@ -1,0 +1,27 @@
+    .navbar{
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    }
+    .content {
+    padding: 60px 0px;
+    }
+    .index .page-content {
+    background: linear-gradient(rgb(83, 115, 227) 0%, rgb(144, 81, 229) 100%);
+    padding: 0px;
+}
+.card {
+    width: 85%;
+    box-shadow: black 1px 1px 30px;
+    margin: 0px auto;
+}
+.card-header {
+    height: 250px;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.break-40{
+	height: 40px;
+}
+.text-grey{
+	    color: rgb(141, 141, 141);
+}
