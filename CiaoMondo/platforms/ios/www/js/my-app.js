@@ -34,18 +34,21 @@ function getPosts(){
 }
 
 function fillPostPage(evt){
-	myApp.onPageInit('post', function (page) {
 	var html = "";
 	$$.ajax({
 		url: "http://Valeria.local:8888/wordpress/wp-json/posts/"+evt.target.dataset.id,
 		dataType: "json",
 		method: "get",
 		success: function(data) {
+			console.log(data);
 			html += "<div class='foto' style='background-image:url(http://Valeria.local:8888/wordpress/wp-content/uploads/"+data.featured_image.attachment_meta.file+"'></div>";
 			console.log(html);
-			$$("[data-page='post'] .page-content .info-adozione").html(html);
+			console.log($$("[data-page='post'] .page-content .info-adozione"));
+			$$("[data-page='post'] .page-content .info-adozione").html("<div class='foto' style='background-image:url(http://valeria.local:8888/wordpress/wp-content/uploads/"+data.featured_image.attachment_meta.file+")'></div>");
+		},
+		error: function(error){
+			alert(error);
 		}
-	});
 	});
 }
 
