@@ -1,13 +1,13 @@
-    .navbar{
-    background-color: transparent;
-    color: rgb(255, 255, 255);
-    }
-    .content {
-    padding: 60px 0px;
-    }
-    .index .page-content {
-    background: linear-gradient(rgb(83, 115, 227) 0%, rgb(144, 81, 229) 100%);
-    padding: 0px;
+.navbar{
+background-color: transparent;
+color: rgb(255, 255, 255);
+}
+.content {
+padding: 60px 0px;
+}
+.page-content{
+background: linear-gradient(rgb(83, 115, 227) 0%, rgb(144, 81, 229) 100%);
+padding: 0px;
 }
 .card {
     width: 85%;
@@ -24,4 +24,10 @@
 }
 .text-grey{
 	    color: rgb(141, 141, 141);
+}
+
+.info-adozione .foto{
+	width: 100%;
+	min-height: 500px;
+	background-size: cover;
 }

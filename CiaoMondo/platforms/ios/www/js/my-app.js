@@ -3,14 +3,12 @@ var myApp = new Framework7();
 
 // Export selectors engine
 var $$ = Dom7;
-var html = "";
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
 
-console.log("ciao");
 // Callbacks to run specific code for specific pages, for example for About page:
 myApp.onPageInit('about', function (page) {
     // run createContentPage func after link was clicked
@@ -20,16 +18,28 @@ myApp.onPageInit('about', function (page) {
 });
 
 function getPosts(){
+	var html = "";
 	$$.ajax({
 		url: "http://Valeria.local:8888/wordpress/wp-json/posts",
 		dataType: "json",
 		method: "get",
 		success: function(data) {
-			console.log(data.length);
 			for (i = 0; i < data.length; i++) {
-				html += "<div class='card'><div style='background-image:url(http://Valeria.local:8888/wordpress/wp-content/uploads/"+data[i].featured_image.attachment_meta.file+")' valign='bottom' class='card-header color-white no-border'></div><div class='card-content'><div class='card-content-inner'><p class='color-gray'>Posted on January 21, 2015</p><h1 class='post-title'>"+data[i].title+"</h1><div class='text-grey'>"+data[i].excerpt+"</div></div></div><div class='card-footer'><a href='#' class='link'>Like</a><a href='about.html' class='link'>Read more</a></div></div><div class='break-40'></div>";
+                html += "<div class='card'><div style='background-image:url(http://Valeria.local:8888/wordpress/wp-content/uploads/"+data[i].featured_image.attachment_meta.file+")' valign='bottom' class='card-header color-white no-border'></div><div class='card-content'><div class='card-content-inner'><p class='color-gray'>Posted on January 21, 2015</p><h1 class='post-title'>"+data[i].title+"</h1><div class='text-grey'>"+data[i].excerpt+"</div></div></div><div class='card-footer'><a href='#' class='link'>Like</a><a href='post.html' class='link' data-id='"+ data[i].ID+"' onclick='fillPostPage(event)'>Read more</a></div></div><div class='break-40'></div>";
 			};
 			$$(".posts").html(html);
+		}
+	});
+}
+
+function fillPostPage(evt){
+	var html = "";
+	$$.ajax({
+		url: "http://Valeria.local:8888/wordpress/wp-json/posts/"+evt.target.dataset.id,
+		dataType: "json",
+		method: "get",
+		success: function(data) {
+			$$("[data-page='post'] .page-content .info-adozione").html("<div class='foto' style='background-image:url(http://Valeria.local:8888/wordpress/wp-content/uploads/"+data.featured_image.attachment_meta.file+"'></div>");
 		}
 	});
 }
